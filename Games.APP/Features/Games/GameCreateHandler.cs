@@ -29,9 +29,21 @@ namespace Games.APP.Features.Games
         {
         }
 
-        public Task<CommandResponse> Handle(GameCreateRequest request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(GameCreateRequest request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            if (await Query().AnyAsync(g => g.Title == request.Title.Trim(), cancellationToken))
+                return Error("Game with same title exists!");
+            var entity = new Game
+            {
+                IsTopSeller = request.IsTopSeller,
+                Price = request.Price,
+                PublisherId = request.PublisherId,
+                ReleaseDate = request.ReleaseDate,
+                TagIds = request.TagIds,
+                Title = request.Title.Trim()
+            };
+            await Create(entity, cancellationToken);
+            return Success("Game created successfully.", entity.Id);
         }
     }
 }
