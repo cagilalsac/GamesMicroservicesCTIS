@@ -4,12 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using MediatR;
 using CORE.APP.Models;
 using Games.APP.Features.Games;
+using Microsoft.AspNetCore.Authorization;
 
 //Generated from Custom Microservices Template.
 namespace Games.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class GamesController : ControllerBase
     {
         private readonly ILogger<GamesController> _logger;
@@ -24,6 +26,7 @@ namespace Games.API.Controllers
 
         // GET: api/Games
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Get()
         {
             try
@@ -49,6 +52,7 @@ namespace Games.API.Controllers
 
         // GET: api/Games/5
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> Get(int id)
         {
             try

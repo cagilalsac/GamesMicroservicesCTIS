@@ -22,5 +22,9 @@ namespace Users.APP.Domain
             get => UserRoles.Select(ur => ur.RoleId).ToList();
             set => UserRoles = value.Select(id => new UserRole { RoleId = id }).ToList();
         }
+
+        public string RefreshToken { get; set; }
+
+        public DateTime? RefreshTokenExpiration { get; set; }
     }
 }

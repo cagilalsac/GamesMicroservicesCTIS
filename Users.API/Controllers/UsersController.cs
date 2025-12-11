@@ -4,12 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using MediatR;
 using CORE.APP.Models;
 using Users.APP.Features.Users;
+using Microsoft.AspNetCore.Authorization;
 
 //Generated from Custom Microservices Template.
 namespace Users.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
     public class UsersController : ControllerBase
     {
         private readonly ILogger<UsersController> _logger;

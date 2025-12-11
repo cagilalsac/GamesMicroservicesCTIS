@@ -4,12 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using MediatR;
 using CORE.APP.Models;
 using Games.APP.Features.Tags;
+using Microsoft.AspNetCore.Authorization;
 
 //Generated from Custom Microservices Template.
 namespace Games.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
     public class TagsController : ControllerBase
     {
         private readonly ILogger<TagsController> _logger;

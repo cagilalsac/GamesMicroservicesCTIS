@@ -4,12 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using MediatR;
 using CORE.APP.Models;
 using Games.APP.Features.Publishers;
+using Microsoft.AspNetCore.Authorization;
 
 //Generated from Custom Microservices Template.
 namespace Games.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
     public class PublishersController : ControllerBase
     {
         private readonly ILogger<PublishersController> _logger;
